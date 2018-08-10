@@ -1,0 +1,10 @@
+#include "gxl_p212_2g.dts"
+
+/ {
+	le-dt-id = "gxl_p212_2g_g9sx";
+
+	aml_m8_snd {
+		/delete-property/ pinctrl-names;
+		/delete-property/ pinctrl-0;
+	};
+};
