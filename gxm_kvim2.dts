@@ -19,9 +19,9 @@
 		compatible = "fanctl";
 		fan_ctl0 = <&gpio GPIODV_14 GPIO_ACTIVE_HIGH>;
 		fan_ctl1 = <&gpio GPIODV_15 GPIO_ACTIVE_HIGH>;
-		trig_temp_level0 = <50>;
-		trig_temp_level1 = <60>;
-		trig_temp_level2 = <70>;
+		trig_temp_level0 = <60>;
+		trig_temp_level1 = <70>;
+		trig_temp_level2 = <74>;
 	};
 
 	meson-fb {
