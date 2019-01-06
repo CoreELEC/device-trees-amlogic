@@ -1,7 +1,7 @@
 #include "gxm_q200_2g.dts"
 
 /{
-	le-dt-id = "gxm_kvim2";
+	le-dt-id = "gxm_kvim2_2vtv";
 	compatible = "kvim";
 	amlogic-dt-id = "kvim";
 
@@ -47,6 +47,16 @@
 		key_val = <10>;
 		key_tolerance = <40>;
 	};
+	aml_m8_snd {
+		/delete-property/ mute_gpio-gpios;
+		/delete-property/ pinctrl-names;
+		/delete-property/ pinctrl-0;
+	};
+	amlogic-jtag {
+		pinctrl-names = "jtag_apee_pins";
+		pinctrl-0 = <&jtag_apee_pins>;
+		/delete-property/ pinctrl-1;
+	};
 	dvb {
 		compatible = "amlogic,dvb";
 		dev_name = "dvb";
@@ -56,6 +66,9 @@
 		fec_reset_gpio-gpios = <&gpio GPIODV_12 GPIO_ACTIVE_HIGH>;
 		power_ctrl_gpio-gpios = <&gpio  GPIODV_20  GPIO_ACTIVE_HIGH>;
 		lock_led_gpio-gpios = <&gpio GPIODV_11 GPIO_ACTIVE_HIGH>;
+		ts1 = "serial";
+		lock_led_gpio-gpios2 = <&gpio GPIODV_13 GPIO_ACTIVE_HIGH>;
+		pinctrl-names = "s_ts0", "s_ts1";
 		pinctrl-0 = <&dvb_s_ts0_pins>;
 		pinctrl-1 = <&dvb_s_ts1_pins>;
 		resets = <&clock GCLK_IDX_DEMUX &clock GCLK_IDX_ASYNC_FIFO &clock GCLK_IDX_AHB_ARB0 &clock GCLK_IDX_HIU_PARSER_TOP>;
@@ -73,10 +86,15 @@
 		dtv_demod0_reset_gpio-gpios = <&gpio  GPIODV_12  GPIO_ACTIVE_HIGH>;
 		dtv_demod0_power_gpio-gpios = <&gpio  GPIODV_20  GPIO_ACTIVE_HIGH>;
 		dtv_demod0_lock_gpio-gpios = <&gpio  GPIODV_11  GPIO_ACTIVE_HIGH>;
+		dtv_demod1_i2c_adap_id = <1>;
 		fe0_dtv_demod = <0>;
 		fe0_ts = <1>;
 		fe0_dev = <0>;
 	};
+};
+
+&i2c_a {
+	status = "okay";
 };
 
 &i2c_b {
