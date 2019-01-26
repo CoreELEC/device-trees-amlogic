@@ -52,4 +52,5 @@
 
 &i2c_c {
 	status = "okay";
+	master_i2c_speed = <100000>;
 };
