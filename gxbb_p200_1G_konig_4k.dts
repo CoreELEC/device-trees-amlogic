@@ -56,7 +56,7 @@
 
 };
 
-&i2a_a {
+&i2c_a {
 	status = "okay";
 	master_i2c_speed = <100000>;
 };
