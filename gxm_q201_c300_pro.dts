@@ -52,5 +52,6 @@
 
 &i2c_c {
 	status = "okay";
+	pinctrl-0=<&c_i2c_master_pin1>;
 	master_i2c_speed = <100000>;
 };
