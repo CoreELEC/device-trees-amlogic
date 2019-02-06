@@ -1,7 +1,7 @@
 #include "gxm_q201_2g.dts"
 
 /{
-	le-dt-id = "gxm_q201_3g_c400_pro";
+	le-dt-id = "gxm_q201_3g_c400_plus";
 	memory@00000000 {
 		linux,usable-memory = <0x0 0x100000 0x0 0xbf000000>;
 	};
