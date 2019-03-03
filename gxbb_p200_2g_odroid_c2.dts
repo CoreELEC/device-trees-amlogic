@@ -1,1 +1,5 @@
 #include "../meson64_odroidc2.dts"
+
+/{
+	le-dt-id = "gxbb_p200_2g_odroid_c2";
+};
