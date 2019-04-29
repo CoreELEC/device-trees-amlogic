@@ -1,0 +1,8 @@
+#include "gxbb_p200_k2_pro.dts"
+
+/{
+	le-dt-id = "gxbb_p200_k2_pro_ser";
+	dvb {
+		ts0 = "serial";
+	};
+};

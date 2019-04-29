@@ -1,0 +1,8 @@
+#include "gxl_p231_2g_dvb.dts"
+
+/{
+	le-dt-id = "gxl_p231_2g_dvb_ser";
+	dvb {
+		ts0 = "serial";
+	};
+};
