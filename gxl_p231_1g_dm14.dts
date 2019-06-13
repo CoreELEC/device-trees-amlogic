@@ -1,0 +1,57 @@
+#include "gxl_p231_1g.dts"
+
+/{
+	le-dt-id = "gxl_p231_1g_dm14";
+
+	dvb {
+		compatible = "amlogic,dvb";
+		dev_name = "magicsee";
+		ts0 = "parallel";
+		ts0_control = <0x0>;
+		ts0_invert = <0x0>;
+		fec_reset_gpio-gpios = <&gpio GPIOZ_2 GPIO_ACTIVE_HIGH>;
+		power_ctrl_gpio-gpios = <&gpio_ao GPIOAO_6 GPIO_ACTIVE_LOW>;
+		pinctrl-names = "p_ts0", "s_ts0";
+		pinctrl-0 = <&dvb_p_ts0_pins>;
+		pinctrl-1 = <&dvb_s_ts0_pins>;
+		resets = <&clock GCLK_IDX_DEMUX &clock GCLK_IDX_ASYNC_FIFO &clock GCLK_IDX_AHB_ARB0 &clock GCLK_IDX_HIU_PARSER_TOP>;
+		reset-names = "demux", "asyncfifo", "ahbarb0", "uparsertop";
+	};
+
+	dvbfe {
+		compatible = "amlogic,dvbfe";
+		dev_name = "magicsee";
+		status = "okay";
+		dtv_demod0 = "Avl6211";
+		dtv_demod0_i2c_adap_id = <3>;
+		dtv_demod0_i2c_addr = <0x14>;
+		dtv_demod0_reset_value = <0>;
+		dtv_demod0_reset_gpio-gpios = <&gpio GPIOZ_2 GPIO_ACTIVE_HIGH>;
+		dtv_demod0_power_gpio-gpios = <&gpio_ao GPIOAO_6 GPIO_ACTIVE_HIGH>;
+		// dtv_demod0_antoverload_gpio-gpios = <&gpio_ao GPIOAO_5 GPIO_ACTIVE_HIGH>; 	/* 5V output for active antenna */
+		fe0_dtv_demod = <0>;
+		fe0_ts = <0>;
+		fe0_dev = <0>;
+	};
+};
+
+&pinmux {
+	dvb_p_ts0_pins:dvb_p_ts0_pins {
+		amlogic,setmask = <0x2 0x1f>;
+		amlogic,clrmask = <0x3 0x780 0x2 0xff000400 0x1 0x100>;
+		amlogic,pins = "GPIODV_0", "GPIODV_1", "GPIODV_2", "GPIODV_3", "GPIODV_4", "GPIODV_5", "GPIODV_6", "GPIODV_7", "GPIODV_8", "GPIODV_9", "GPIODV_10";
+	};
+
+	dvb_s_ts0_pins:dvb_s_ts0_pins {
+		amlogic,setmask = <0x2 0x17>;
+		amlogic,clrmask = <0x3 0x580 0x2 0x7000000 0x1 0x100>;
+		amlogic,pins = "GPIODV_0", "GPIODV_8", "GPIODV_9", "GPIODV_10";
+	};
+
+};
+
+&i2c_c {
+	status = "okay";
+	pinctrl-0=<&c_i2c_master_pin1>;
+	master_i2c_speed = <100000>;
+};
