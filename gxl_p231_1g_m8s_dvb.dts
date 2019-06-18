@@ -5,12 +5,20 @@
 	emmc {
 		status = "disabled";
 	};
+
 	nand {
 		status = "okay";
 	};
-	sdio{
-		interrupts = <	0 216 1>;
+
+	ethernet@0xc9410000{
+                interrupts = <0 8 1>;
+        };
+
+
+	sysled {
+		led_gpio = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
 	};
+
 	dvb {
 		compatible = "amlogic,dvb";
 		dev_name = "avl6762";
@@ -18,10 +26,9 @@
 		ts0_control = <0x0>;
 		ts0_invert = <0x0>;
 		fec_reset_gpio-gpios = <&gpio GPIODV_13 GPIO_ACTIVE_HIGH>;
-		power_ctrl_gpio-gpios = <&gpio GPIODV_11 GPIO_ACTIVE_LOW>;
-		pinctrl-names = "p_ts0", "s_ts0";
+		power_ctrl_gpio-gpios = <&gpio GPIODV_11 GPIO_ACTIVE_HIGH>;
+		pinctrl-names = "p_ts0";
 		pinctrl-0 = <&dvb_p_ts0_pins>;
-		pinctrl-1 = <&dvb_s_ts0_pins>;
 		resets = <&clock GCLK_IDX_DEMUX &clock GCLK_IDX_ASYNC_FIFO &clock GCLK_IDX_AHB_ARB0 &clock GCLK_IDX_HIU_PARSER_TOP>;
 		reset-names = "demux", "asyncfifo", "ahbarb0", "uparsertop";
 	};
@@ -32,10 +39,9 @@
 		status = "okay";
 		dtv_demod0 = "Avl6211";
 		dtv_demod0_i2c_adap_id = <2>;
-		dtv_demod0_i2c_addr = <0x60>;
 		dtv_demod0_reset_value = <0>;
-		dtv_demod0_reset_gpio-gpios = <&gpio GPIODV_13 GPIO_ACTIVE_LOW>;
-		dtv_demod0_power_gpio-gpios = <&gpio GPIODV_14 GPIO_ACTIVE_LOW>;
+		dtv_demod0_reset_gpio-gpios = <&gpio GPIODV_13 GPIO_ACTIVE_HIGH>;
+		dtv_demod0_power_gpio-gpios = <&gpio GPIODV_14 GPIO_ACTIVE_HIGH>;
 		fe0_dtv_demod = <0>;
 		fe0_ts = <0>;
 		fe0_dev = <0>;
@@ -48,17 +54,8 @@
 		amlogic,clrmask = <0x3 0x787 0x2 0xff000400>;
 		amlogic,pins = "GPIODV_0", "GPIODV_1", "GPIODV_2", "GPIODV_3", "GPIODV_4", "GPIODV_5", "GPIODV_6", "GPIODV_7", "GPIODV_8", "GPIODV_9", "GPIODV_10";
 	};
-
-	dvb_s_ts0_pins:dvb_s_ts0_pins {
-		amlogic,setmask = <0x2 0x17>;
-		amlogic,clrmask = <0x3 0x584 0x2 0x7000000 0x1 0x100>;
-		amlogic,pins = "GPIODV_0", "GPIODV_8", "GPIODV_9", "GPIODV_10";
-	};
 };
 
-&i2c_a {
-	status = "okay";
-};
 
 &i2c_b {
 	status = "okay";
