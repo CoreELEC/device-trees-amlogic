@@ -52,7 +52,7 @@
 		status = "okay";
 		dtv_demod0 = "Avl6211";
 		dtv_demod0_i2c_adap_id = <1>;
-		dtv_demod0_i2c_addr = <0xC0>;
+		dtv_demod0_i2c_addr = <0x14>;
 		dtv_demod0_reset_value = <0>;
 		//dtv_demod0_reset_gpio = <&gpio GPIOY_13 GPIO_ACTIVE_HIGH>;
 		dtv_demod0_reset_gpio-gpios = <&gpio GPIOY_13 GPIO_ACTIVE_LOW>;
